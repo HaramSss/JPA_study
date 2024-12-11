@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: study_jpa # 애플리케이션 이름 설정
+  kafka:
+    bootstrap-servers: localhost:9092 # Kafka 브로커 주소
+    consumer:
+      group-id: my-group # Kafka 컨슈머 그룹 ID
+      auto-offset-reset: earliest # 메시지 읽기 위치 설정 (earliest: 처음부터)
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      missing-topics-fatal: false # 존재하지 않는 토픽으로 인한 에러 방지
+  datasource:
+    url: jdbc:h2:mem:testdb # H2 메모리 데이터베이스 URL
+    driver-class-name: org.h2.Driver # H2 드라이버
+    username: sa # H2 기본 사용자
+    password: "" # 기본 비밀번호 (없음)
+  jpa:
+    hibernate:
+      ddl-auto: update # 엔티티 변경 시 테이블 자동 업데이트
+    show-sql: true # SQL 쿼리 출력
+logging:
+  level:
+    org.apache.kafka: DEBUG # Kafka 관련 디버깅 로그 활성화
+    org.springframework: DEBUG # Spring 관련 디버깅 로그 활성화
